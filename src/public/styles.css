@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+  }
+
+  .container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .input-group {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .input-group label {
+    width: 80px;
+    font-weight: bold;
+  }
+
+  .input-group input[type="text"] {
+    flex-grow: 1;
+    padding: 5px;
+  }
+
+  .input-group button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .short-url {
+    text-align: center;
+    margin-top: 20px;
+  }
