@@ -1,15 +1,17 @@
 /* styles.css */
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: fantasy;
   margin: 0;
   padding: 0;
 }
 
 header {
   color: #941010;
-  margin-top: 50px;
+  margin-top: 80px;
   margin-left: 20px;
+  padding-left: 90px;
+  font-size: 30px;
 }
 
 header h1 {
@@ -18,29 +20,41 @@ header h1 {
 
 .nav_bar {
 	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
-  font-size: 16px;
-	gap: 70px;
+	justify-content: flex-end;
+  font-size: 18px;
+	gap: 20px;
 	list-style: none;
-	padding-right: 80px;
+	padding-right: 90px;
 }
 
 main {
   padding: 20px;
+  margin: auto;
 }
 
 form {
-  margin-bottom: 20px;
+  margin-bottom: 60px;
+  padding-right: 30px;
+  padding-left: 90px;
+  justify-content: center;
+  margin-top: 90px;
 }
 
 label {
   display: block;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 input[type="text"] {
-  width: 100%;
+  width: 60%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+
+#slug-input {
+  width: 30%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -57,19 +71,26 @@ button[type="submit"] {
 
 #short-url-container {
   margin-bottom: 20px;
+  padding-right: 30px;
+  padding-left: 90px;
 }
 
-#short-url-container h2 {
+#short-url-container h3 {
   margin-top: 0;
+  color: #941010;
 }
 
 #analytics-container {
   border-top: 1px solid #ccc;
   padding-top: 20px;
+  padding-right: 30px;
+  padding-left: 90px;
+  justify-content: center;
 }
 
-#analytics-container h2 {
+#analytics-container h3 {
   margin-top: 0;
+  color: #941010;
 }
 
 #analytics-list {
