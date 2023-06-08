@@ -1,43 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scissor - URL Shortener</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <header>
-    <h1>Scissor</h1>
-  </header>
-  <nav>
-    <ul class="nav_bar">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scissor - URL Shortener</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Scissor</h1>
+    </header>
+    <nav>
+      <ul class="nav_bar">
         <li>Sign Up</li>
         <li>Log In</li>
-    </ul>
-  </nav>
-  <main>
-    <form id="create-url-form">
-      <label for="destination-input">Destination URL:</label>
-      <input type="text" id="destination-input" required>
+      </ul>
+    </nav>
+    <main>
+      <form id="create-url-form">
+        <label for="destination-input">Destination URL:</label>
+        <input type="text" id="destination-input" required />
 
-      <label for="slug-input">Custom Slug (Optional):</label>
-      <input type="text" id="slug-input">
+        <label for="slug-input">Custom Slug (Optional):</label>
+        <input type="text" id="slug-input" />
 
-      <button type="submit">Create Short URL</button>
-    </form>
+        <button type="submit">Create Short URL</button>
+      </form>
 
-    <div id="short-url-container">
-      <h3>Short URL:</h3>
-      <p id="short-url-text"></p>
-    </div>
+      <div id="short-url-container">
+        <h3>Short URL:</h3>
+        <p id="short-url-text"></p>
+      </div>
 
-    <div id="analytics-container">
-      <h3>Analytics:</h3>
-      <ul id="analytics-list"></ul>
-    </div>
-  </main>
+      <div id="analytics-container">
+        <h3>Analytics:</h3>
+        <ul id="analytics-list"></ul>
+      </div>
+    </main>
 
-  <script id="data" type="application/typescript" src="/src/app.ts"></script>
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("create-url-form");
+        const destinationInput = document.getElementById("destination-input");
+        const slugInput = document.getElementById("slug-input");
+        const shortUrlContainer = document.getElementById(
+          "short-url-container"
+        );
+        const shortUrlText = document.getElementById("short-url-text");
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const destination = destinationInput.value;
+          const slug = slugInput.value;
+
+          try {
+            const response = await fetch("/scissor/url", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ destination, slug }),
+            });
+
+            if (!response.ok) {
+              throw new Error("Error creating short URL");
+            }
+
+            const data = await response.json();
+
+            shortUrlText.textContent = data.shortId;
+            shortUrlContainer.style.display = "block";
+          } catch (error) {
+            console.error(error);
+          }
+        });
+      });
+    </script>
+
+    <script id="data" type="application/typescript" src="/src/app.ts"></script>
+  </body>
 </html>
