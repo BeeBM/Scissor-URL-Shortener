@@ -1,59 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Scissor - URL Shortener</title>
-    <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
-    <script type="module"321      src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scissor - URL Shortener</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <h2 class="title">URL Shortener</h2>
-    <div class="input-group">
-      <label for="long-url">Long URL:</label>
-      <input type="text" id="long-url" />
-      <button id="shorten-btn">Shorten</button>
+  <header>
+    <h1>Scissor</h1>
+  </header>
+  <nav>
+    <ul class="nav_bar">
+        <li>Sign Up</li>
+        <li>Log In</li>
+    </ul>
+  </nav>
+  <main>
+    <form id="create-url-form">
+      <label for="destination-input">Destination URL:</label>
+      <input type="text" id="destination-input" required>
+      <button type="submit">Create Short URL</button>
+    </form>
+
+    <div id="short-url-container">
+      <h2>Short URL:</h2>
+      <p id="short-url-text"></p>
     </div>
-    <div class="short-url">
-      <p><strong>Short URL:</strong> <span id="short-url-text"></span></p>
+
+    <div id="analytics-container">
+      <h2>Analytics:</h2>
+      <ul id="analytics-list"></ul>
     </div>
-  </div>
+  </main>
 
-  <script>
-    // JavaScript code to handle form submission and retrieve shortened URL
-    const form = document.querySelector('.input-group');
-    const longUrlInput = document.getElementById('long-url');
-    const shortenBtn = document.getElementById('shorten-btn');
-    const shortUrlText = document.getElementById('short-url-text');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const longUrl = longUrlInput.value.trim();
-
-      if (longUrl) {
-        try {
-          const response = await fetch('/api/url', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ longUrl })
-          });
-
-          const data = await response.json();
-
-          if (response.ok) {
-            shortUrlText.textContent = data.shortUrl;
-            longUrlInput.value = '';
-          } else {
-            shortUrlText.textContent = 'Error occurred. Please try again.';
-          }
-        } catch (error) {
-          console.error(error);
-          shortUrlText.textContent = 'Error occurred. Please try again.';
-        }
-      }
-    });
-  </script>
+  <script id="data" type="application/typescript" src="/src/app.ts"></script>
 </body>
 </html>

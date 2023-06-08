@@ -13,13 +13,13 @@ function routes(app: Express) {
     return res.send("App is healthy");
   });
 
-  app.post("/api/url", validateResourse(shortUrlSchema), createShortUrl);
+  app.post("/scissor/url", validateResourse(shortUrlSchema), createShortUrl);
 
   app.get("/:shortId", handleRedirect);
 
-  app.get("/api/url/:shortId", getShortUrl);
+  app.get("/scissor/url/:shortId", getShortUrl);
 
-  app.get("/api/analytics", getAnalytics);
+  app.get("/scissor/analytics", getAnalytics);
 }
 
 export default routes;
