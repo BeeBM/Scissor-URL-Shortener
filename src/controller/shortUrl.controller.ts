@@ -28,33 +28,46 @@ export async function createShortUrl(req: Request, res: Response) {
   return res.json(newUrl);
 }
 
+// Handle the redirect to the destination URL based on the provided shortId
 export async function handleRedirect(req: Request, res: Response) {
   const { shortId } = req.params;
 
+  // Find the corresponding short URL in the database
   const short = await shortUrl.findOne({ shortId }).lean();
 
+  // If the short URL is not found, return a 404 status
   if (!short) {
     return res.sendStatus(404);
   }
 
+  // Create an analytics entry for tracking the visit to the short URL
   analytics.create({ shortUrl: short._id });
 
+  // Redirect the user to the destination URL
   return res.redirect(short.destination);
 }
 
+// Retrieve the analytics data for all short URL visits
 export async function getAnalytics(req: Request, res: Response) {
+  // Retrieve all analytics data from the database
   const data = await analytics.find({}).lean();
 
+  // Send the analytics data as a response
   return res.send(data);
 }
 
+// Retrieve a specific short URL by its shortId
 export async function getShortUrl(req: Request, res: Response) {
   const { shortId } = req.params;
+
+  // Find the corresponding short URL in the database
   const short = await shortUrl.findOne({ shortId }).lean();
 
+  // If the short URL is not found, return a 404 status
   if (!short) {
     return res.sendStatus(404);
   }
 
+  // Send the short URL data as a JSON response
   return res.json(short);
 }

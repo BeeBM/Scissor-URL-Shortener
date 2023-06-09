@@ -5,7 +5,7 @@ async function db() {
   const dbUri = config.get("dbUri") as string;
   try {
     await mongoose.connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true });
-    console.log(`DB connected to ${dbUri}`);
+    console.log(`DB connected to MongoDB`);
   } catch (e) {
     console.error(e);
   }
