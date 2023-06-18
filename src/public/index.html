@@ -17,7 +17,7 @@
       </ul>
     </nav>
     <main>
-      <form id="create-url-form">
+      <form id="retrieve-url-form">
         <label for="destination-input">Destination URL:</label>
         <input type="text" id="destination-input" required />
 
@@ -40,7 +40,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const form = document.getElementById("create-url-form");
+        const form = document.getElementById("retrieve-url-form");
         const destinationInput = document.getElementById("destination-input");
         const slugInput = document.getElementById("slug-input");
         const shortUrlContainer = document.getElementById(
@@ -66,16 +66,46 @@
             if (!response.ok) {
               throw new Error("Error creating short URL");
             }
-
+            
             const data = await response.json();
 
-            shortUrlText.textContent = data.shortId;
+            const fullShortUrl = `${window.location.protocol}//${window.location.host}/${data.shortUrl}`;
+            shortUrlText.innerHTML = `<a href="${fullShortUrl}" target="_blank">${fullShortUrl}</a>`;
             shortUrlContainer.style.display = "block";
           } catch (error) {
             console.error(error);
           }
         });
       });
+
+      // Handle form submission to create or retrieve a short URL
+      // async function handleSubmit(event) {
+      //   event.preventDefault();
+      //   const form = event.target;
+      //   const input = form.querySelector("input");
+      //   const shortUrlContainer = document.getElementById(
+      //     "short-url-container"
+      //   );
+      //   const shortUrlText = document.getElementById("short-url-text");
+
+      //   try {
+      //     const response = await axios.post(form.action, { slug: input.value });
+      //     const shortUrl = response.data.shortUrl;
+      //     const fullShortUrl = `${window.location.protocol}//${window.location.host}/${shortUrl}`;
+      //     shortUrlText.innerHTML = `<a href="${fullShortUrl}" target="_blank">${fullShortUrl}</a>`;
+      //     shortUrlContainer.style.display = "block";
+      //   } catch (error) {
+      //     console.error("Error retrieving short URL:", error.response.data);
+      //     shortUrlText.innerHTML = "Error retrieving short URL.";
+      //     shortUrlContainer.style.display = "block";
+      //   }
+      // }
+
+      // const createForm = document.getElementById("create-url-form");
+      // createForm.addEventListener("submit", handleSubmit);
+
+      // const retrieveForm = document.getElementById("retrieve-url-form");
+      // retrieveForm.addEventListener("submit", handleSubmit);
     </script>
 
     <script id="data" type="application/typescript" src="/src/app.ts"></script>

@@ -29,3 +29,5 @@ app.listen(port, "0.0.0.0", () => {
 
   routes(app);
 });
+
+module.exports = app;

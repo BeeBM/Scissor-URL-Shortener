@@ -24,8 +24,10 @@ export async function createShortUrl(req: Request, res: Response) {
   // Create a shortUrl
   const newUrl = await shortUrl.create({ shortId, destination });
 
-  // Return the shortUrl
-  return res.json(newUrl);
+  // Build the full shortened URL
+  const fullShortUrl = `${req.protocol}://brif.com/${newUrl.shortId}`;
+
+  return res.json({ shortUrl: fullShortUrl });
 }
 
 // Handle the redirect to the destination URL based on the provided shortId
@@ -68,6 +70,8 @@ export async function getShortUrl(req: Request, res: Response) {
     return res.sendStatus(404);
   }
 
-  // Send the short URL data as a JSON response
-  return res.json(short);
+  // Build the full shortened URL
+  const fullShortUrl = `${req.protocol}://${req.get('host')}/${short.shortId}`;
+
+  return res.json({ shortUrl: fullShortUrl });
 }
