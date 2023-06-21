@@ -7,25 +7,29 @@ export async function createShortUrl(req: Request, res: Response) {
   // Get the destination and custom slug from the request body
   const { destination, slug } = req.body;
 
+  if (!destination) {
+    return res.status(400).json({ error: 'Destination URL is required' });
+  }
+
   // Check if the custom slug is provided
-  let shortId;
+  let shortId: string;
   if (slug) {
     // Check if the custom slug is already taken
     const existingUrl = await shortUrl.findOne({ shortId: slug }).lean();
     if (existingUrl) {
       return res.status(400).json({ error: 'Custom slug is already taken' });
     }
-    shortId = slug;
+    shortId = slug as string;
   } else {
     // Generate a random shortId if no custom slug is provided
     shortId = customAlphabet('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', 6)();
   }
-
+  
   // Create a shortUrl
   const newUrl = await shortUrl.create({ shortId, destination });
-
+  
   // Build the full shortened URL
-  const fullShortUrl = `${req.protocol}://brif.com/${newUrl.shortId}`;
+  const fullShortUrl = `${req.protocol}://${req.get('host')}/${newUrl.shortId}`;
 
   return res.json({ shortUrl: fullShortUrl });
 }

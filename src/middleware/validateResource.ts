@@ -8,7 +8,7 @@ const validateResource = (resourceSchema: AnyObjectSchema) => async (
 ) => {
   try {
     await resourceSchema.validate({
-      body: req.body,
+      body: req.body, 
       query: req.query,
       params: req.params,
     });

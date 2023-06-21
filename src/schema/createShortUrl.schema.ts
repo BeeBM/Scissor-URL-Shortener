@@ -5,5 +5,8 @@ export default object({
     destination: string()
       .url("Must be a valid URL")
       .required("Destination is required"),
+    slug: string()
+      .trim()
+      .matches(/^[a-zA-Z0-9_-]*$/, 'Invalid slug format'),
   }),
 });

@@ -1,51 +1,24 @@
 import request from 'supertest';
 import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import path from 'path';
-
-// Import the app from your file
 import app from '../src/app';
-
-// Mock the config module
-jest.mock('config', () => ({
-  get: jest.fn((key: string) => {
-    if (key === 'corsOrigin') {
-      return 'http://example.com';
-    }
-    if (key === 'port') {
-      return 4400;
-    }
-    return undefined;
-  }),
-}));
-
-// Mock the routes module
-jest.mock('./routes', () => (app: express.Application) => {
-  app.get('/test', (req, res) => {
-    res.status(200).json({ message: 'Test route' });
-  });
-});
+import routes from '../src/routes/index';
 
 describe('App', () => {
   let expressApp: express.Application;
 
   beforeAll(() => {
     expressApp = express();
-    expressApp.use(cors());
-    expressApp.use(bodyParser.json());
-    expressApp.use(express.static(path.join(__dirname, 'public')));
-    app(expressApp);
+    app(expressApp, res);
   });
 
-  afterAll(() => {
-    // Clean up resources, if any
-  });
-
-  it('should return a successful response from the test route', async () => {
-    const response = await request(expressApp).get('/test');
-
+  it('should return 200 OK when the app is running', async () => {
+    const response = await request(expressApp).get('/');
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({ message: 'Test route' });
+  });
+
+  it('should return the expected response when making a request to a specific endpoint', async () => {
+    const response = await request(expressApp).get('/api/endpoint');
+    expect(response.status).toBe(200);
+    expect(response.body).toEqual({ message: 'Endpoint response' });
   });
 });
