@@ -8,20 +8,21 @@
   </head>
   <body>
     <header>
-      <h1>Scissor</h1>
+      <h1 id="heading">
+        <img
+          src="./aleksandar-zivkovic-c18q3myyHLU-unsplash.jpg"
+          alt="scissors"
+          class="logo"
+        />Scissor
+      </h1>
     </header>
-    <nav>
-      <ul class="nav_bar">
-        <li>Sign Up</li>
-        <li>Log In</li>
-      </ul>
-    </nav>
+
     <main>
       <form id="retrieve-url-form">
         <label for="destination-input">Destination URL:</label>
         <input type="text" id="destination-input" required />
 
-        <label for="slug-input">Custom Slug (Optional):</label>
+        <label for="slug-input">Suggest End Part of URL (Optional):</label>
         <input type="text" id="slug-input" />
 
         <button type="submit">Create Short URL</button>
@@ -50,6 +51,7 @@
         );
         const shortUrlText = document.getElementById("short-url-text");
         const errorMessage = document.getElementById("error-message");
+        const analyticsList = document.getElementById("analytics-list");
 
         form.addEventListener("submit", async (event) => {
           event.preventDefault();
@@ -65,11 +67,18 @@
               },
               body: JSON.stringify({ destination, slug }),
             });
-            
+
             const data = await response.json();
 
             shortUrlText.innerHTML = `<a href="${data.shortUrl}" target="_blank">${data.shortUrl}</a>`;
             shortUrlContainer.style.display = "block";
+
+            // Fetch analytics data for the generated short URL
+            const analyticsResponse = await fetch(`/scissor/analytics/${data.shortId}`);
+            const analyticsData = await analyticsResponse.json();
+
+            // Update the analytics list with the new data
+            analyticsList.innerHTML = `<li>${analyticsData.shortId} - ${analyticsData.clicks} clicks</li>`;
           } catch (error) {
             console.error(error);
           }

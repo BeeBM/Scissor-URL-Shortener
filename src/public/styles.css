@@ -1,5 +1,3 @@
-/* styles.css */
-
 body {
   font-family: fantasy;
   margin: 0;
@@ -8,36 +6,32 @@ body {
 
 header {
   color: #941010;
-  margin-top: 80px;
+  margin-top: 40px;
   margin-left: 20px;
-  padding-left: 90px;
-  font-size: 30px;
+  padding-left: 30px;
+  font-size: 24px;
 }
 
-header h1 {
-  margin: 0;
+.logo {
+  max-width: 100px;
 }
 
-.nav_bar {
-	display: flex;
-	justify-content: flex-end;
-  font-size: 18px;
-	gap: 20px;
-	list-style: none;
-	padding-right: 90px;
+img {
+  width: 50px;
+  height: 50px;
 }
 
 main {
+  background-image: url('./jj-ying-7JX0-bfiuxQ-unsplash.jpg');
   padding: 20px;
   margin: auto;
 }
 
 form {
-  margin-bottom: 60px;
-  padding-right: 30px;
-  padding-left: 90px;
+  margin-bottom: 40px;
+  padding: 0 30px;
   justify-content: center;
-  margin-top: 90px;
+  margin-top: 60px;
 }
 
 label {
@@ -47,14 +41,14 @@ label {
 }
 
 input[type="text"] {
-  width: 60%;
+  width: 100%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
 }
 
 #slug-input {
-  width: 30%;
+  width: 100%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -71,8 +65,7 @@ button[type="submit"] {
 
 #short-url-container {
   margin-bottom: 20px;
-  padding-right: 30px;
-  padding-left: 90px;
+  padding: 0 30px;
 }
 
 #short-url-container h3 {
@@ -83,9 +76,7 @@ button[type="submit"] {
 #analytics-container {
   border-top: 1px solid #ccc;
   padding-top: 20px;
-  padding-right: 30px;
-  padding-left: 90px;
-  justify-content: center;
+  padding: 0 30px;
 }
 
 #analytics-container h3 {
@@ -100,4 +91,53 @@ button[type="submit"] {
 
 #analytics-list li {
   margin-bottom: 10px;
+}
+
+/* Responsive Styles */
+@media (min-width: 480px) {
+  /* Adjust header styles for screens wider than 480px */
+  header {
+    font-size: 28px;
+  }
+
+  /* Adjust form styles for screens wider than 480px */
+  form {
+    margin-top: 80px;
+  }
+}
+
+@media (min-width: 768px) {
+  /* Adjust header styles for screens wider than 768px */
+  header {
+    margin-left: 40px;
+    padding-left: 60px;
+    font-size: 32px;
+  }
+
+  /* Adjust form styles for screens wider than 768px */
+  form {
+    margin-top: 100px;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* Adjust header styles for screens wider than 1024px */
+  header {
+    margin-top: 60px;
+    margin-left: 60px;
+    padding-left: 90px;
+    font-size: 36px;
+  }
+
+  /* Adjust form styles for screens wider than 1024px */
+  form {
+    margin-top: 120px;
+  }
+}
+
+@media (min-width: 1200px) {
+  /* Adjust #slug-input width for screens wider than 1200px */
+  #slug-input {
+    width: 30%;
+  }
 }

@@ -3,7 +3,7 @@ import {
   createShortUrl,
   handleRedirect,
   getAnalytics,
-  getShortUrl,
+  // getShortUrl,
 } from "../controller/shortUrl.controller";
 import validateResourse from "../middleware/validateResource";
 import shortUrlSchema from "../schema/createShortUrl.schema";
@@ -17,7 +17,7 @@ function routes(app: Express) {
 
   app.get("/:shortId", handleRedirect);
 
-  app.get("/scissor/url/:shortId", getShortUrl);
+  // app.get("/scissor/url/:shortId", getShortUrl);
 
   app.get("/scissor/analytics", getAnalytics);
 }

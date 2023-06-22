@@ -16,6 +16,7 @@ const schema = new mongoose.Schema({
     default: () => nanoid(),
   },
   destination: { type: String, required: true },
+  createdAt: { type: Date, default: Date.now }
 });
 
 const shortUrl = mongoose.model<ShortURL>("shortUrl", schema);

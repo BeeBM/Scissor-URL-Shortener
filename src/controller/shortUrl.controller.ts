@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import shortUrl from "../models/shortUrl.model";
 import analytics from "../models/analytics.model";
-import { customAlphabet } from 'nanoid';
+import { customAlphabet } from "nanoid";
+import { DateTime } from "luxon";
 
 export async function createShortUrl(req: Request, res: Response) {
   // Get the destination and custom slug from the request body
@@ -55,27 +56,46 @@ export async function handleRedirect(req: Request, res: Response) {
 
 // Retrieve the analytics data for all short URL visits
 export async function getAnalytics(req: Request, res: Response) {
+  const { shortId } = req.params;
   // Retrieve all analytics data from the database
-  const data = await analytics.find({}).lean();
+  const data = await analytics.find({ shortId }).lean();
+
+   // If the analytics data is not found, return a 404 status
+   if (!data) {
+    return res.sendStatus(404);
+  }
 
   // Send the analytics data as a response
   return res.send(data);
 }
 
-// Retrieve a specific short URL by its shortId
-export async function getShortUrl(req: Request, res: Response) {
-  const { shortId } = req.params;
+// Delete urls from the database after 3 months
+export async function removeExpiredUrls() {
+  // Get the current date and time
+  const currentDate = DateTime.now().toJSDate();
 
-  // Find the corresponding short URL in the database
-  const short = await shortUrl.findOne({ shortId }).lean();
+  // Calculate the date three months ago
+  const expirationDate = DateTime.fromJSDate(currentDate).minus({ months: 3 }).toJSDate();
 
-  // If the short URL is not found, return a 404 status
-  if (!short) {
-    return res.sendStatus(404);
-  }
-
-  // Build the full shortened URL
-  const fullShortUrl = `${req.protocol}://${req.get('host')}/${short.shortId}`;
-
-  return res.json({ shortUrl: fullShortUrl });
+  // Remove expired URLs from the database
+  await shortUrl.deleteMany({ createdAt: { $lt: expirationDate } });
 }
+
+
+// // Retrieve a specific short URL by its shortId
+// export async function getShortUrl(req: Request, res: Response) {
+//   const { shortId } = req.params;
+
+//   // Find the corresponding short URL in the database
+//   const short = await shortUrl.findOne({ shortId }).lean();
+
+//   // If the short URL is not found, return a 404 status
+//   if (!short) {
+//     return res.sendStatus(404);
+//   }
+
+//   // Build the full shortened URL
+//   const fullShortUrl = `${req.protocol}://${req.get('host')}/${short.shortId}`;
+
+//   return res.json({ shortUrl: fullShortUrl });
+// }
