@@ -155,7 +155,7 @@ describe('Integration Tests', () => {
     });
   });
 });
-const createSpy = jest.fn().mockResolvedValueOnce({
-  shortId: 'abcdef',
-});
-shortUrl.create = createSpy;
+// const createSpy = jest.fn().mockResolvedValueOnce({
+//   shortId: 'abcdef',
+// });
+// shortUrl.create = createSpy;
