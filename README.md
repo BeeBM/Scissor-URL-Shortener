@@ -21,14 +21,42 @@ Scissor is built using the following technologies:
 - MongoDB: A NoSQL database for storing URL and analytics data.
 - Mongoose: An Object Data Modeling (ODM) library for MongoDB.
 - nanoid: A library for generating unique and URL-friendly IDs.
-- moment.js: A library for handling dates and times.
-- Supertest/Jest: A testing framework for unit testing the application.
+- body-parser: A middleware for parsing request bodies.
+- config: A library for handling application configuration.
+- cors: A middleware for enabling Cross-Origin Resource Sharing.
+- dotenv: A library for loading environment variables from a .env file.
+- luxon: A library for handling dates and times.
+- nodemon: A development utility for automatically restarting the server.
+- yup: A library for data validation.
 
 ### Frontend:
 - HTML: Markup language for creating the user interface.
 - CSS: Styling language for customizing the application's appearance.
 - TypeScript: Programming language for adding interactivity to the frontend.
 - Fetch API: TypeScript API for making HTTP requests to the backend.
+
+### Development Dependencies
+The application uses the following development dependencies:
+- @jest/globals: Jest testing framework globals.
+- @types/body-parser: Type definitions for body-parser.
+- @types/config: Type definitions for config.
+- @types/cors: Type definitions for cors.
+- @types/express: Type definitions for express.
+- @types/jest: Type definitions for Jest.
+- @types/luxon: Type definitions for luxon.
+- @types/nanoid: Type definitions for nanoid.
+- @types/node: Type definitions for Node.js.
+- @types/supertest: Type definitions for supertest.
+- @types/yup: Type definitions for yup.
+- jest: JavaScript testing framework.
+- mongodb-memory-server: In-memory MongoDB server for testing.
+- supertest: Library for testing HTTP requests.
+- ts-node: TypeScript execution environment for running scripts.
+- typescript: TypeScript compiler.
+
+These development dependencies are primarily used for testing and development purposes. They provide type definitions, testing frameworks, and tools for running tests and compiling TypeScript code.
+
+Make sure to install and configure these dependencies appropriately for your development environment.
 
 ## Setup Instructions
 ### Prerequisites
