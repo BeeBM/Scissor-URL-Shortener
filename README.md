@@ -64,25 +64,32 @@ Make sure to install and configure these dependencies appropriately for your dev
 
 ### Installation
 1. Clone the repository:
-    git clone <(https://github.com/BeeBM/Scissor-URL-Shortener.git)>
+
+    ```git clone https://github.com/BeeBM/Scissor-URL-Shortener.git```
 2. Navigate to the project directory:
-    cd Scissor-URL-Shortener
+   
+    ```cd Scissor-URL-Shortener```
 3. Install dependencies:
-    npm install
+   
+    ```npm install```
 
 ### Configuration
 1. Create a .env file in the root of the project directory.
 2. Define the following environment variables in the .env file:
-    PORT=<port-number>
-    MONGODB_URI=<mongodb-uri>
-    CORS_ORIGIN=<cors-origin>
- - <port-number>: The port on which the application will run (e.g., 3000).
- - <mongodb-uri>: The connection URI for the MongoDB database.
- - <cors-origin>: The allowed origin for CORS requests (e.g., http://localhost:3000)
+   
+    ```PORT=<port-number>```
+
+    ```MONGODB_URI=<mongodb-uri>```
+
+    ```CORS_ORIGIN=<cors-origin>```
+ - port-number: The port on which the application will run (e.g., 3000).
+ - mongodb-uri: The connection URI for the MongoDB database.
+ - cors-origin: The allowed origin for CORS requests (e.g., http://localhost:3000)
 
 ### Running the Application
 1. Start the server:
-    npm start
+    
+    ```npm start```
 2. Open a web browser and navigate to http://localhost:<port-number>, where <port-number> is the port specified in the .env file.
 
 ### API Endpoints
@@ -100,9 +107,10 @@ Make sure to install and configure these dependencies appropriately for your dev
 
 ### Testing
 The application includes unit tests to ensure its functionality. To run the tests, use the following command:
-    npm test
+    
+  ```npm test```
 
 ### Deployment
 
-### Conclusion
+## Conclusion
 Scissor-URL-Shortener provides an easy way to shorten and manage long URLs. With its simple yet powerful features, it can be used in various scenarios where short and shareable URLs are required. The provided documentation should guide you through the setup, configuration, and deployment processes. Feel free to explore and customize the application to suit your specific requirements.

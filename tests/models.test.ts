@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import shortUrl, { ShortURL } from '../src/models/shortUrl.model';
-import analytics, { Analytics } from '../src/models/analytics.model';
+import analytics from '../src/models/analytics.model';
 
 describe('Integration Tests', () => {
   let mongoServer: MongoMemoryServer;
@@ -50,7 +50,7 @@ describe('Integration Tests', () => {
         destination: 'https://example.com',
       });
 
-      const newAnalytics: Analytics = await analytics.create({
+      const newAnalytics = await analytics.create({
         shortUrl: shortURL._id,
       });
 
