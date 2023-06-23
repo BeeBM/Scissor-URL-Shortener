@@ -16,6 +16,14 @@
         />Scissor
       </h1>
     </header>
+    <nav>
+      <ul class="nav_bar">
+        <li>why Scissor?</li>
+        <li>Sign Up Free</li>
+        <li>Log In</li>
+        <li>Resources</li>
+      </ul>
+    </nav>
 
     <main>
       <form id="retrieve-url-form">
@@ -78,7 +86,12 @@
             const analyticsData = await analyticsResponse.json();
 
             // Update the analytics list with the new data
-            analyticsList.innerHTML = `<li>${analyticsData.shortId} - ${analyticsData.clicks} clicks</li>`;
+            analyticsList.innerHTML = "";
+            analyticsData.forEach((item) => {
+              const li = document.createElement("li");
+              li.textContent = `${item.date} - ${item.clicks} clicks`;
+              analyticsList.appendChild(li);
+            });
           } catch (error) {
             console.error(error);
           }

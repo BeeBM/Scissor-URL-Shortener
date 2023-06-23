@@ -80,22 +80,3 @@ export async function removeExpiredUrls() {
   // Remove expired URLs from the database
   await shortUrl.deleteMany({ createdAt: { $lt: expirationDate } });
 }
-
-
-// // Retrieve a specific short URL by its shortId
-// export async function getShortUrl(req: Request, res: Response) {
-//   const { shortId } = req.params;
-
-//   // Find the corresponding short URL in the database
-//   const short = await shortUrl.findOne({ shortId }).lean();
-
-//   // If the short URL is not found, return a 404 status
-//   if (!short) {
-//     return res.sendStatus(404);
-//   }
-
-//   // Build the full shortened URL
-//   const fullShortUrl = `${req.protocol}://${req.get('host')}/${short.shortId}`;
-
-//   return res.json({ shortUrl: fullShortUrl });
-// }

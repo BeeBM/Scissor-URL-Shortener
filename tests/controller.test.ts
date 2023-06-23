@@ -4,7 +4,6 @@ import {
   createShortUrl,
   handleRedirect,
   getAnalytics,
-  getShortUrl,
 } from '../src/controller/shortUrl.controller';
 import shortUrl from '../src/models/shortUrl.model';
 import analytics from '../src/models/analytics.model';
@@ -25,7 +24,6 @@ describe('Integration Tests', () => {
     app.post('/shorten', createShortUrl);
     app.get('/redirect/:shortId', handleRedirect);
     app.get('/analytics', getAnalytics);
-    app.get('/shortUrl/:shortId', getShortUrl);
   });
 
   afterEach(() => {
@@ -41,7 +39,7 @@ describe('Integration Tests', () => {
       const destination = 'https://example.com';
 
       const createSpy = jest.spyOn(shortUrl, 'create').mockResolvedValueOnce({
-        shortId: 'abcdef',
+        shortId: 'abcdef', 
       });
 
       const response = await request(app)
@@ -157,3 +155,7 @@ describe('Integration Tests', () => {
     });
   });
 });
+const createSpy = jest.fn().mockResolvedValueOnce({
+  shortId: 'abcdef',
+});
+shortUrl.create = createSpy;
