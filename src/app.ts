@@ -8,7 +8,7 @@ import path from "path";
 import { removeExpiredUrls } from "./controller/shortUrl.controller";
 import { DateTime } from "luxon";
 
-const app = express();
+const app = express(); 
 
 app.use(
   cors({

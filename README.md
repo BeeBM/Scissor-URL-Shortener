@@ -1,9 +1,9 @@
-# Scissor-URL-Shortener Documentation
+# **Scissor-URL-Shortener Documentation**
 
-## Introduction
+## **Introduction**
 Scissor is a web application that allows users to create short URLs for long and complex web addresses. It helps to make long URLs more manageable and shareable. This documentation provides an overview of the application, its features, and how to set it up.
 
-## Features
+## **Features**
 Scissor includes the following features:
 
 1. Shorten URLs: Users can enter a long URL and create a shortened version of it.
@@ -12,7 +12,7 @@ Scissor includes the following features:
 4. Analytics: The application tracks and displays the number of clicks for each shortened URL.
 5. Expiration: Shortened URLs expire after a certain time (e.g., three months) and are automatically removed from the system.
 
-## Technologies Used
+## **Technologies Used**
 Scissor is built using the following technologies:
 
 ### Backend:
@@ -59,7 +59,7 @@ These development dependencies are primarily used for testing and development pu
 
 Make sure to install and configure these dependencies appropriately for your development environment.
 
-## Setup Instructions
+## **Setup Instructions**
 ### Prerequisites
 - Node.js and npm: Make sure Node.js and npm are installed on your system. You can download them from the official Node.js website (https://nodejs.org).
 
@@ -113,5 +113,8 @@ The application includes unit tests to ensure its functionality. To run the test
 
 ### Deployment
 
-## Conclusion
+## **Conclusion**
 Scissor-URL-Shortener provides an easy way to shorten and manage long URLs. With its simple yet powerful features, it can be used in various scenarios where short and shareable URLs are required. The provided documentation should guide you through the setup, configuration, and deployment processes. Feel free to explore and customize the application to suit your specific requirements.
+
+## **License**
+MIT License
