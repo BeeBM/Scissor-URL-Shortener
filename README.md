@@ -49,6 +49,7 @@ The application uses the following development dependencies:
 - @types/supertest: Type definitions for supertest.
 - @types/yup: Type definitions for yup.
 - jest: JavaScript testing framework.
+- ts-jest: Typescript support in Jest for running tests and transpiling TypeScript code to JavaScript.
 - mongodb-memory-server: In-memory MongoDB server for testing.
 - supertest: Library for testing HTTP requests.
 - ts-node: TypeScript execution environment for running scripts.
