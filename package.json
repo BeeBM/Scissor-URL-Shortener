@@ -4,7 +4,6 @@
     "main": "app.ts",
     "license": "MIT",
     "scripts": {
-        "type": "module",
         "dev": "nodemon --config nodemon.json src/app.ts",
         "build": "tsc",
         "test": "jest --detectOpenHandles"
