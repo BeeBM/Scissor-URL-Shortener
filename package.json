@@ -9,7 +9,6 @@
         "build": "tsc",
         "test": "jest --detectOpenHandles"
     },
-    "type": "module",
     "dependencies": {
         "body-parser": "^1.19.0",
         "config": "^3.3.6",
