@@ -1,11 +1,12 @@
 {
     "name": "scissor_urlshortener",
     "version": "1.0.0",
-    "main": "app.ts",
+    "main": "app.js",
     "license": "MIT",
     "scripts": {
         "dev": "nodemon --config nodemon.json src/app.ts",
         "build": "tsc",
+        "start": "npm run build && node build/src/app.js",
         "test": "jest --detectOpenHandles"
     },
     "dependencies": {
