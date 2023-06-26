@@ -1,4 +1,24 @@
-# **Scissor-URL-Shortener Documentation**
+# **SCISSOR Documentation**
+
+**Table of Contents**
+
+- [**SCISSOR Documentation**](#scissor-documentation)
+  - [**Introduction**](#introduction)
+  - [**Features**](#features)
+  - [**Technologies Used**](#technologies-used)
+    - [Backend:](#backend)
+    - [Frontend:](#frontend)
+    - [Development Dependencies](#development-dependencies)
+  - [**Setup Instructions**](#setup-instructions)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [Configuration](#configuration)
+    - [Running the Application](#running-the-application)
+    - [API Endpoints](#api-endpoints)
+    - [Testing](#testing)
+    - [Deployment](#deployment)
+  - [**Conclusion**](#conclusion)
+  - [**License**](#license)
 
 ## **Introduction**
 Scissor is a web application that allows users to create short URLs for long and complex web addresses. It helps to make long URLs more manageable and shareable. This documentation provides an overview of the application, its features, and how to set it up.
@@ -49,6 +69,8 @@ The application uses the following development dependencies:
 - @types/supertest: Type definitions for supertest.
 - @types/yup: Type definitions for yup.
 - jest: JavaScript testing framework.
+- rimraf: A cross-platform tool for deleting files and directories.
+- copyfiles: Used in build scripts or development workflows to copy specific files or directories to a target location.
 - ts-jest: Typescript support in Jest for running tests and transpiling TypeScript code to JavaScript.
 - mongodb-memory-server: In-memory MongoDB server for testing.
 - supertest: Library for testing HTTP requests.
@@ -112,9 +134,10 @@ The application includes unit tests to ensure its functionality. To run the test
   ```npm test```
 
 ### Deployment
+This application was deployed on [Render](render.com) at https://scissor-mpf3.onrender.com.
 
 ## **Conclusion**
-Scissor-URL-Shortener provides an easy way to shorten and manage long URLs. With its simple yet powerful features, it can be used in various scenarios where short and shareable URLs are required. The provided documentation should guide you through the setup, configuration, and deployment processes. Feel free to explore and customize the application to suit your specific requirements.
+Scissor provides an easy way to shorten and manage long URLs. With its simple yet powerful features, it can be used in various scenarios where short and shareable URLs are required. The provided documentation should guide you through the setup, configuration, and deployment processes. Feel free to explore and customize the application to suit your specific requirements.
 
 ## **License**
 MIT License
