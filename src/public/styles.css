@@ -21,31 +21,6 @@ img {
   height: 50px;
 }
 
-nav {
-  float: right;
-  }
-
-.nav_bar {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  }
-
-.nav_bar li {
-  display: inline-block;
-  margin-left: 10px;
-  cursor: pointer;
-  padding-right: 70px;
-  color: #941010;
-  font-size: 18px;
-  }
-
-.nav_bar li:hover {
-    text-decoration: underline;
-    text-decoration-style: wavy;
-    font-weight:bold;
-  }
-
 main {
   background-image: url('./jj-ying-7JX0-bfiuxQ-unsplash.jpg');
   padding: 20px;
