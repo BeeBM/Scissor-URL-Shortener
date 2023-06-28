@@ -3,9 +3,9 @@ import {
   createShortUrl,
   handleRedirect,
   getAnalytics,
-} from "../controller/shortUrl.controller";
+} from "../controller/shortUrlController";
 import validateResourse from "../middleware/validateResource";
-import shortUrlSchema from "../schema/createShortUrl.schema";
+import shortUrlSchema from "../schema/createShortUrlSchema";
 
 function routes(app: Express) {
   app.get("/healthcheck", (req: Request, res: Response) => {

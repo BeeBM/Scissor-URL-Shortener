@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import shortUrl from "../models/shortUrl.model";
-import analytics from "../models/analytics.model";
+import shortUrl from "../models/shortUrlModel";
+import analytics from "../models/analyticsModel";
 import { customAlphabet } from "nanoid";
 import { DateTime } from "luxon";
 
@@ -15,24 +15,32 @@ export async function createShortUrl(req: Request, res: Response) {
   // Check if the custom slug is provided
   let shortId: string;
   if (slug) {
-    // Check if the custom slug is already taken
-    const existingUrl = await shortUrl.findOne({ shortId: slug }).lean();
-    if (existingUrl) {
-      return res.status(400).json({ error: 'Custom slug is already taken' });
+    try {
+      // Check if the custom slug is already taken
+      const existingUrl = await shortUrl.findOne({ shortId: slug }).lean();
+      if (existingUrl) {
+        return res.status(400).json({ error: 'Custom slug is already taken' });
+      }
+      shortId = slug as string;
+    } catch (error) {
+      return res.status(500).json({ error: 'Internal server error' });
     }
-    shortId = slug as string;
   } else {
     // Generate a random shortId if no custom slug is provided
     shortId = customAlphabet('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890', 6)();
   }
   
-  // Create a shortUrl
-  const newUrl = await shortUrl.create({ shortId, destination });
-  
-  // Build the full shortened URL
-  const fullShortUrl = `${req.protocol}://${req.get('host')}/${newUrl.shortId}`;
+  try {
+    // Create a shortUrl
+    const newUrl = await shortUrl.create({ shortId, destination });
 
-  return res.json({ shortUrl: fullShortUrl });
+    // Build the full shortened URL
+    const fullShortUrl = `${req.protocol}://${req.get('host')}/${newUrl.shortId}`;
+
+    return res.json({ shortUrl: fullShortUrl });
+  } catch (error) {
+    return res.status(500).json({ error: 'Internal server error' });
+  }
 }
 
 // Handle the redirect to the destination URL based on the provided shortId
@@ -57,16 +65,22 @@ export async function handleRedirect(req: Request, res: Response) {
 // Retrieve the analytics data for all short URL visits
 export async function getAnalytics(req: Request, res: Response) {
   const { shortId } = req.params;
-  // Retrieve all analytics data from the database
-  const data = await analytics.find({ shortId }).lean();
 
-   // If the analytics data is not found, return a 404 status
-   if (!data) {
-    return res.sendStatus(404);
+  try {
+    // Retrieve analytics data from the database for the given shortId
+    const data = await analytics.find({ shortId }).lean();
+
+    // If no analytics data is found, return a 404 status
+    if (data.length === 0) {
+      return res.sendStatus(404);
+    }
+
+    // Send the analytics data as a response
+    return res.send(data);
+  } catch (error) {
+    // Handle any errors that occur during the database query
+    return res.sendStatus(500).json ({ error: 'Error fetching analytics data' });
   }
-
-  // Send the analytics data as a response
-  return res.send(data);
 }
 
 // Delete urls from the database after 3 months

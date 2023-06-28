@@ -11,7 +11,6 @@ export interface ShortURL extends Document {
 const schema = new mongoose.Schema({
   shortId: {
     type: String,
-    unique: true,
     required: true,
     default: () => nanoid(),
   },

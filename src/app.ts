@@ -5,7 +5,7 @@ import cors from "cors";
 import routes from "./routes";
 import db from "./database";
 import path from "path";
-import { removeExpiredUrls } from "./controller/shortUrl.controller";
+import { removeExpiredUrls } from "./controller/shortUrlController";
 import { DateTime } from "luxon";
 
 const app = express(); 
