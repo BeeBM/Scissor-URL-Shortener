@@ -18,26 +18,33 @@
     </header>
 
     <main>
-      <form id="retrieve-url-form">
-        <label for="destination-input">Destination URL:</label>
-        <input type="text" id="destination-input" required />
-
-        <label for="slug-input">Suggest End Part of URL (Optional):</label>
-        <input type="text" id="slug-input" />
-
-        <button type="submit">Create Short URL</button>
-      </form>
-
-      <div id="short-url-container">
-        <h3>Short URL:</h3>
-        <p id="short-url-text"></p>
+      <div class="lhs">
+        <h1>Unleash the Power of Simplicity: Transform Long URLs into Short, Memorable Links!</h1>
       </div>
-
-      <div id="error-message"></div>
-
-      <div id="analytics-container">
-        <h3>Analytics:</h3>
-        <ul id="analytics-list"></ul>
+      <div class="rhs">
+        <form id="retrieve-url-form">
+          <label for="destination-input">Destination URL:</label>
+          <input type="text" id="destination-input" required />
+  
+          <label for="slug-input"> Customize your URL (Optional):</label>
+          <input type="text" id="slug-input" />
+  
+          <div>
+            <button type="submit">Create Short URL</button>
+          </div>
+        </form>
+  
+        <div id="short-url-container">
+          <h3>Short URL:</h3>
+          <p id="short-url-text"></p>
+        </div>
+  
+        <div id="error-message"></div>
+  
+        <div id="analytics-container">
+          <h3>Analytics:</h3>
+          <ul id="analytics-list"></ul>
+        </div>
       </div>
     </main>
 
